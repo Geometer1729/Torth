@@ -29,12 +29,11 @@ data Func
   deriving Show
 
 runParser :: String -> Expr
-runParser = readP_to_S parseExpr .> filter (snd .> null) .> ( \case
+runParser = cleanComments .> readP_to_S parseExpr .> filter (snd .> null) .> ( \case
   [] -> error "no parse"
   [(e,"")] -> e
   _ -> error "ambiguous parse"
                                                             )
-
 cleanComments :: String -> String
 cleanComments = lines .> map (takeWhile (/= '#')) .> unlines
 
