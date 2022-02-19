@@ -6,77 +6,79 @@ dependencies:
 - template-haskell
 - flow
 - containers
+- directory
+- filepath
+
+default-extensions:
+  BangPatterns
+  BinaryLiterals
+  ConstrainedClassMethods
+  ConstraintKinds
+  DataKinds
+  DeriveAnyClass
+  DeriveDataTypeable
+  DeriveFoldable
+  DeriveFunctor
+  DeriveGeneric
+  DeriveLift
+  DeriveTraversable
+  DerivingStrategies
+  DerivingVia
+  DoAndIfThenElse
+  EmptyCase
+  EmptyDataDecls
+  EmptyDataDeriving
+  ExistentialQuantification
+  ExplicitForAll
+  FlexibleInstances
+  ForeignFunctionInterface
+  FunctionalDependencies
+  GADTSyntax
+  GADTs
+  GeneralisedNewtypeDeriving
+  HexFloatLiterals
+  ImplicitPrelude
+  InstanceSigs
+  KindSignatures
+  LambdaCase
+  MonomorphismRestriction
+  MultiParamTypeClasses
+  NamedFieldPuns
+  NamedWildCards
+  NoStarIsType
+  NumericUnderscores
+  OverloadedStrings
+  PatternGuards
+  PolyKinds
+  PostfixOperators
+  QuasiQuotes
+  QuantifiedConstraints
+  RankNTypes
+  RelaxedPolyRec
+  ScopedTypeVariables
+  StandaloneDeriving
+  StandaloneKindSignatures
+  TemplateHaskell
+  TraditionalRecordSyntax
+  TupleSections
+  TypeApplications
+  TypeFamilies
+  TypeOperators
+  TypeSynonymInstances
+  ViewPatterns
+ghc-options:
+- -Wall -Werror
 
 library:
   source-dirs:
   - src
-  default-extensions:
-    BangPatterns
-    BinaryLiterals
-    ConstrainedClassMethods
-    ConstraintKinds
-    DataKinds
-    DeriveAnyClass
-    DeriveDataTypeable
-    DeriveFoldable
-    DeriveFunctor
-    DeriveGeneric
-    DeriveLift
-    DeriveTraversable
-    DerivingStrategies
-    DerivingVia
-    DoAndIfThenElse
-    EmptyCase
-    EmptyDataDecls
-    EmptyDataDeriving
-    ExistentialQuantification
-    ExplicitForAll
-    FlexibleInstances
-    ForeignFunctionInterface
-    FunctionalDependencies
-    GADTSyntax
-    GADTs
-    GeneralisedNewtypeDeriving
-    HexFloatLiterals
-    ImplicitPrelude
-    InstanceSigs
-    KindSignatures
-    LambdaCase
-    MonomorphismRestriction
-    MultiParamTypeClasses
-    NamedFieldPuns
-    NamedWildCards
-    NoStarIsType
-    NumericUnderscores
-    OverloadedStrings
-    PatternGuards
-    PolyKinds
-    PostfixOperators
-    QuantifiedConstraints
-    RankNTypes
-    RelaxedPolyRec
-    ScopedTypeVariables
-    StandaloneDeriving
-    StandaloneKindSignatures
-    TemplateHaskell
-    TraditionalRecordSyntax
-    TupleSections
-    TypeApplications
-    TypeFamilies
-    TypeOperators
-    TypeSynonymInstances
-    ViewPatterns
-  ghc-options:
-  - -Wall -Werror
 
 executables:
   main:
     main:                Main.hs
-    source-dirs:         torth
+    source-dirs:         loader
     dependencies:
     - torth
-    default-extensions:
-      QuasiQuotes
     ghc-options:
-    - -Wall -Werror -Wno-type-defaults
+    - -Wno-type-defaults
 

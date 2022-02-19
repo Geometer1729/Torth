@@ -3,6 +3,7 @@ module Torth where
 import Core
 
 import Control.Monad ((>=>))
+import Control.Monad.IO.Class (MonadIO(liftIO))
 import Data.Functor ((<&>))
 import qualified Data.Map as M
 import Flow ((.>))
@@ -47,8 +48,17 @@ compile = parseProg .> compExpr >=> andRun
 compileDec :: String -> Q [Dec]
 compileDec w = do
   e <- compile w
-  return [ SigD (mkName "main") (AppT (ConT (mkName "IO")) (ConT (mkName "()")))
+  ioType <- [t| IO () |]
+  return [ SigD (mkName "main") ioType
          , FunD (mkName "main") [Clause [] (NormalB e) []] ]
+
+compileFile :: String -> Q Exp
+compileFile path = do
+  txt <- liftIO $ readFile path
+  compile txt
+
+torthLoad :: QuasiQuoter
+torthLoad = quoteFile torth
 
 torth :: QuasiQuoter
 torth = QuasiQuoter

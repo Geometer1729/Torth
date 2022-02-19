@@ -2,6 +2,7 @@ module Builtins where
 
 import Data.Map as M
 import Data.Set as S
+import Data.Bits (xor)
 import Language.Haskell.TH.Syntax
 import Core
 
@@ -14,12 +15,15 @@ builtins = M.fromList
   , ("*"     ,[| lift2 (*)    |])
   , ("-"     ,[| lift2 (-)    |])
   , ("/"     ,[| lift2 (/)    |])
-  , ("=="     ,[| lift2 (==)    |])
+  , ("=="    ,[| lift2 (==)   |])
   , ("<"     ,[| lift2 (<)    |])
   , (">"     ,[| lift2 (>)    |])
-  , (">="     ,[| lift2 (>=)    |])
-  , ("<="     ,[| lift2 (<=)    |])
-  , ("/="     ,[| lift2 (/=)    |])
+  , (">="    ,[| lift2 (>=)   |])
+  , ("<="    ,[| lift2 (<=)   |])
+  , ("/="    ,[| lift2 (/=)   |])
+  , ("&&"    ,[| lift2 (&&)   |])
+  , ("||"    ,[| lift2 (||)   |])
+  , ("^^"    ,[| lift2 xor    |])
   , ("div"   ,[| lift2 div    |])
   , ("print" ,[| tprint       |])
   , ("getLn" ,[| tgetLn       |])

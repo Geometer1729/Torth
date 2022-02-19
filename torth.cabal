@@ -21,11 +21,13 @@ library
   hs-source-dirs:
       src
   default-extensions:
-      BangPatterns BinaryLiterals ConstrainedClassMethods ConstraintKinds DataKinds DeriveAnyClass DeriveDataTypeable DeriveFoldable DeriveFunctor DeriveGeneric DeriveLift DeriveTraversable DerivingStrategies DerivingVia DoAndIfThenElse EmptyCase EmptyDataDecls EmptyDataDeriving ExistentialQuantification ExplicitForAll FlexibleInstances ForeignFunctionInterface FunctionalDependencies GADTSyntax GADTs GeneralisedNewtypeDeriving HexFloatLiterals ImplicitPrelude InstanceSigs KindSignatures LambdaCase MonomorphismRestriction MultiParamTypeClasses NamedFieldPuns NamedWildCards NoStarIsType NumericUnderscores OverloadedStrings PatternGuards PolyKinds PostfixOperators QuantifiedConstraints RankNTypes RelaxedPolyRec ScopedTypeVariables StandaloneDeriving StandaloneKindSignatures TemplateHaskell TraditionalRecordSyntax TupleSections TypeApplications TypeFamilies TypeOperators TypeSynonymInstances ViewPatterns
+      BangPatterns BinaryLiterals ConstrainedClassMethods ConstraintKinds DataKinds DeriveAnyClass DeriveDataTypeable DeriveFoldable DeriveFunctor DeriveGeneric DeriveLift DeriveTraversable DerivingStrategies DerivingVia DoAndIfThenElse EmptyCase EmptyDataDecls EmptyDataDeriving ExistentialQuantification ExplicitForAll FlexibleInstances ForeignFunctionInterface FunctionalDependencies GADTSyntax GADTs GeneralisedNewtypeDeriving HexFloatLiterals ImplicitPrelude InstanceSigs KindSignatures LambdaCase MonomorphismRestriction MultiParamTypeClasses NamedFieldPuns NamedWildCards NoStarIsType NumericUnderscores OverloadedStrings PatternGuards PolyKinds PostfixOperators QuasiQuotes QuantifiedConstraints RankNTypes RelaxedPolyRec ScopedTypeVariables StandaloneDeriving StandaloneKindSignatures TemplateHaskell TraditionalRecordSyntax TupleSections TypeApplications TypeFamilies TypeOperators TypeSynonymInstances ViewPatterns
   ghc-options: -Wall -Werror
   build-depends:
       base
     , containers
+    , directory
+    , filepath
     , flow
     , template-haskell
   default-language: Haskell2010
@@ -33,15 +35,18 @@ library
 executable main
   main-is: Main.hs
   other-modules:
+      Loader
       Paths_torth
   hs-source-dirs:
-      torth
+      loader
   default-extensions:
-      QuasiQuotes
+      BangPatterns BinaryLiterals ConstrainedClassMethods ConstraintKinds DataKinds DeriveAnyClass DeriveDataTypeable DeriveFoldable DeriveFunctor DeriveGeneric DeriveLift DeriveTraversable DerivingStrategies DerivingVia DoAndIfThenElse EmptyCase EmptyDataDecls EmptyDataDeriving ExistentialQuantification ExplicitForAll FlexibleInstances ForeignFunctionInterface FunctionalDependencies GADTSyntax GADTs GeneralisedNewtypeDeriving HexFloatLiterals ImplicitPrelude InstanceSigs KindSignatures LambdaCase MonomorphismRestriction MultiParamTypeClasses NamedFieldPuns NamedWildCards NoStarIsType NumericUnderscores OverloadedStrings PatternGuards PolyKinds PostfixOperators QuasiQuotes QuantifiedConstraints RankNTypes RelaxedPolyRec ScopedTypeVariables StandaloneDeriving StandaloneKindSignatures TemplateHaskell TraditionalRecordSyntax TupleSections TypeApplications TypeFamilies TypeOperators TypeSynonymInstances ViewPatterns
   ghc-options: -Wall -Werror -Wno-type-defaults
   build-depends:
       base
     , containers
+    , directory
+    , filepath
     , flow
     , template-haskell
     , torth
