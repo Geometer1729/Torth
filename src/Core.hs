@@ -28,6 +28,9 @@ tdup (Cons x s) = return $ Cons x (Cons x s)
 tswap :: Action (a ': b ': s) (b ': a ': s)
 tswap (Cons a (Cons b s)) = return $ Cons b (Cons a s)
 
+tover :: Action (a ': b ': c ': s) (c ': a ': b ': s)
+tover (Cons a (Cons b (Cons c s))) = return $ Cons c $ Cons a $ Cons b s
+
 nop :: Action s s
 nop = return
 
@@ -47,7 +50,8 @@ tif onTrue onFalse (Cons bool s) =
      then onTrue s
      else onFalse s
 
-tWhile :: forall s. Action s (Bool ': s) -> Action s s -> Action s s
+tWhile :: forall s1 s2. Action s1 (Bool ': s2) -> Action s2 s1 -> Action s1 s2
 tWhile check body s = check s >>= \case
   Cons False s' -> return s'
   Cons True s' -> body s' >>= tWhile check body
+

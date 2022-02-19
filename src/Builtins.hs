@@ -31,6 +31,7 @@ builtins = M.fromList
   , ("drop"  ,[| tdrop        |])
   , ("dup"   ,[| tdup         |])
   , ("swap"  ,[| tswap        |])
+  , ("over"  ,[| tover        |])
   ]
 
 tprint :: Show a => Action (a ': s) s

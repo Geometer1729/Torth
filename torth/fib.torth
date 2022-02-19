@@ -1,0 +1,21 @@
+#!/home/bbrian/.local/bin/torth
+0 1 0
+# a b n
+while (over # n a b
+      1 + # inc n
+      dup # n n a b
+      10 > # bool n a b
+      ) {
+  # n a b
+  over over
+  # a b n
+  dup
+  # a a b n
+  over
+  # b a a n
+  +
+  # (b+a) a n
+  dup print
+}
+
+drop drop drop
