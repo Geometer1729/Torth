@@ -6,6 +6,8 @@ cabal-version: 1.12
 
 name:           torth
 version:        0.1.0.0
+license:        GPL-3
+license-file:   LICENSE
 build-type:     Simple
 
 library
@@ -36,7 +38,7 @@ executable main
       torth
   default-extensions:
       QuasiQuotes
-  ghc-options: -Wall
+  ghc-options: -Wall -Werror -Wno-type-defaults
   build-depends:
       base
     , containers

@@ -47,7 +47,8 @@ compile = parseProg .> compExpr >=> andRun
 compileDec :: String -> Q [Dec]
 compileDec w = do
   e <- compile w
-  return [ FunD (mkName "main") [Clause [] (NormalB e) []] ]
+  return [ SigD (mkName "main") (AppT (ConT (mkName "IO")) (ConT (mkName "()")))
+         , FunD (mkName "main") [Clause [] (NormalB e) []] ]
 
 torth :: QuasiQuoter
 torth = QuasiQuoter
