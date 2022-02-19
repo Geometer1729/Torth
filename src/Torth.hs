@@ -23,7 +23,7 @@ compTerm = \case
   If whenTrue whenFalse -> AppE <$> (AppE <$> [| tif |] <*>  compExp whenTrue) <*> compExp whenFalse
   While check body -> AppE <$> (AppE <$> [| tWhile |] <*>  compExp check) <*> compExp body
 
-  Function (ByName n) -> return $ VarE $ mkName n
+  Function (ByName n) -> return $ VarE $ mkName $ "ti_" ++ n
   Function (Builtin b) -> case M.lookup b builtins of
                             Just expr -> expr
                             Nothing -> error $ "internal error bad builtin: " ++ b
@@ -38,14 +38,14 @@ compose (x:xs) = AppE <$> (AppE <$> [| (>=>) |] <*> pure x) <*> compose xs
 
 andRun :: [Dec] -> Q Exp
 andRun decs =
-  (LetE decs <$>)$ AppE <$> [|run|] <*> pure (VarE $ mkName "main")
+  (LetE decs <$>)$ AppE <$> [|run|] <*> pure (VarE $ mkName "ti_main")
 
 compDecs :: [DecT] -> Q [Dec]
 compDecs = (concat <$>) . mapM compDec
 
 compDec :: DecT -> Q [Dec]
 compDec DecT{..} = do
-  fname <- newName tname
+  fname <- newName $ "ti_" ++ tname
   t <- makeType ttype
   impl <- compExp body
   return

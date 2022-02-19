@@ -1,23 +1,24 @@
 #!/home/bbrian/.local/bin/torth
-def main void -> void {
-  0 1 0
-# a b n
-  while (over # n a b
-        1 + # inc n
-        dup # n n a b
-        10 > # bool n a b
-        ) {
-    # n a b
-    over over
-    # a b n
-    dup
-    # a a b n
-    over
-    # b a a n
-    +
-    # (b+a) a n
-    dup print
-  }
+def stepFib Int Int -> Int Int {
+  dup over +
+}
 
-  drop drop drop
+def dec Int -> Int {
+  1 swap -
+}
+
+def runFib Int -> Int {
+  0 1 over # n 1 0
+  while (dec dup 0 <){
+    over over # a b n
+    stepFib
+    over
+  }
+  drop swap drop
+}
+
+def main void -> void {
+  getLn read
+  runFib
+  print
 }
