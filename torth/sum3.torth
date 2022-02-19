@@ -1,4 +1,10 @@
-getLn read
-getLn read
-getLn read
-+ + print
+def sum3 Int Int Int -> Int { + + }
+
+def intRead void -> Int { getLn read }
+
+def main void -> void {
+  intRead
+  intRead
+  intRead
+  sum3 print
+}

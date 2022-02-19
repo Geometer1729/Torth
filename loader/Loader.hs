@@ -16,23 +16,22 @@ genFileMap = do
   paths <- liftIO getPaths
   list <- mkList paths
   m <- AppE <$> [| M.fromList |] <&> ($ list)
-  mt <- [t| Map String (String,IO ()) |]
+  mt <- [t| Map String (IO ()) |]
   return
     [ SigD (mkName "fileMap") mt
     , FunD (mkName "fileMap") [Clause [] (NormalB m) []]
     ]
 
-getPaths :: IO [(String,FilePath)]
+getPaths :: IO [FilePath]
 getPaths = do
   let dir = "./torth"
   ps <-  listDirectory dir
-  ps' <- mapM canonicalizePath $ (dir </>) <$> ps
-  return $ zip ps ps'
+  mapM canonicalizePath $ (dir </>) <$> ps
 
-
-mkList :: [(String,FilePath)] -> Q Exp
+mkList :: [FilePath] -> Q Exp
 mkList = (ListE <$>) . mapM mkEntry
 
-mkEntry :: (String,FilePath) -> Q Exp
-mkEntry (name,path) =
-  AppE <$> [| (name,) |] <*> (AppE <$> [| (path,) |] <*> compileFile path)
+mkEntry :: FilePath -> Q Exp
+mkEntry path =
+  AppE <$> [| (path,) |] <*> compileFile path
+

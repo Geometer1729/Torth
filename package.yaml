@@ -55,6 +55,7 @@ default-extensions:
   QuantifiedConstraints
   RankNTypes
   RelaxedPolyRec
+  RecordWildCards
   ScopedTypeVariables
   StandaloneDeriving
   StandaloneKindSignatures
