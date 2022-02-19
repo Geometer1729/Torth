@@ -34,6 +34,10 @@ runParser = readP_to_S parseExpr .> filter (snd .> null) .> ( \case
   [(e,"")] -> e
   _ -> error "ambiguous parse"
                                                             )
+
+cleanComments :: String -> String
+cleanComments = lines .> map (takeWhile (/= '#')) .> unlines
+
 parseExpr :: ReadP Expr
 parseExpr = skipSpaces *> (parseTerm <&> (:)) <*> many (spaces *> parseTerm) <* skipSpaces
 

@@ -9,7 +9,7 @@ $( genFileMap )
 main :: IO ()
 main = do
   getArgs >>= \case
-    ["torth",path] -> case M.lookup (name path) fileMap of
+    [path] -> case M.lookup (name path) fileMap of
                 Just (_fullPath,io) -> io
                   -- TODO ideally verify full path
                   -- but I probably need Maps of sets or similar
