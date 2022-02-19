@@ -1,0 +1,46 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.34.4.
+--
+-- see: https://github.com/sol/hpack
+
+name:           torth
+version:        0.1.0.0
+build-type:     Simple
+
+library
+  exposed-modules:
+      Builtins
+      Core
+      Parse
+      Torth
+  other-modules:
+      Paths_torth
+  hs-source-dirs:
+      src
+  default-extensions:
+      BangPatterns BinaryLiterals ConstrainedClassMethods ConstraintKinds DataKinds DeriveAnyClass DeriveDataTypeable DeriveFoldable DeriveFunctor DeriveGeneric DeriveLift DeriveTraversable DerivingStrategies DerivingVia DoAndIfThenElse EmptyCase EmptyDataDecls EmptyDataDeriving ExistentialQuantification ExplicitForAll FlexibleInstances ForeignFunctionInterface FunctionalDependencies GADTSyntax GADTs GeneralisedNewtypeDeriving HexFloatLiterals ImplicitPrelude InstanceSigs KindSignatures LambdaCase MonomorphismRestriction MultiParamTypeClasses NamedFieldPuns NamedWildCards NoStarIsType NumericUnderscores OverloadedStrings PatternGuards PolyKinds PostfixOperators QuantifiedConstraints RankNTypes RelaxedPolyRec ScopedTypeVariables StandaloneDeriving StandaloneKindSignatures TemplateHaskell TraditionalRecordSyntax TupleSections TypeApplications TypeFamilies TypeOperators TypeSynonymInstances ViewPatterns
+  ghc-options: -Wall -Werror
+  build-depends:
+      base
+    , containers
+    , flow
+    , template-haskell
+  default-language: Haskell2010
+
+executable main
+  main-is: Main.hs
+  other-modules:
+      Paths_torth
+  hs-source-dirs:
+      torth
+  default-extensions:
+      QuasiQuotes
+  ghc-options: -Wall
+  build-depends:
+      base
+    , containers
+    , flow
+    , template-haskell
+    , torth
+  default-language: Haskell2010
